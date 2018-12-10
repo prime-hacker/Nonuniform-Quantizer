@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 public class ReadWriteImage 
 {
@@ -71,5 +72,41 @@ public class ReadWriteImage
 			e.printStackTrace();
 		}
 	}
-	
+
+
+
+
+
+	//Utility
+	 ArrayList<Integer> to1D(int[][] imageMatrix)
+	{
+		ArrayList<Integer> returnArray = new ArrayList<>();
+		int height=imageMatrix.length;
+		int width=imageMatrix[0].length;
+
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++){
+				returnArray.add(imageMatrix[y][x]);
+
+			}
+		}
+		return returnArray;
+	}
+	 int[][] to2D(ArrayList<Integer> integers, int height, int width)
+	{
+		int[][] imageMatrix = new int[height][width];
+		int count = -1;
+		for(int i = 0; i< height; i++)
+		{
+			for(int k = 0; k < width; k++)
+			{
+				count++;
+				imageMatrix[i][k] = integers.get(count);
+			}
+		}
+		return imageMatrix;
+	}
+
+
 }

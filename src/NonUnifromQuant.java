@@ -130,7 +130,6 @@ public class NonUnifromQuant {
 
 
 
-
     //Compression and decompression
     public ArrayList<Integer> compress(ArrayList<Integer> image, ArrayList<QuantizerElement> table)
     {
@@ -138,11 +137,11 @@ public class NonUnifromQuant {
         for(Integer pixel:
         image)
         {
-            for(QuantizerElement q:
+            for(QuantizerElement qe:
             table)
             {
-                if(pixel < q.range) {
-                    compressedImage.add(q.Q);
+                if(pixel < qe.range) {
+                    compressedImage.add(qe.Q);
                     break;
                 }
 
@@ -151,5 +150,20 @@ public class NonUnifromQuant {
         return compressedImage;
     }
 
-
+    public ArrayList<Integer> decompress(ArrayList<Integer> imgToDecompress, ArrayList<QuantizerElement> table)
+    {
+        ArrayList<Integer> originalImg = new ArrayList<>();
+        for(Integer pixel:
+        imgToDecompress)
+        {
+            for (QuantizerElement qe:
+                 table) {
+                if(pixel == qe.Q) {
+                    originalImg.add(qe.QInverse);
+                    break;
+                }
+            }
+        }
+        return originalImg;
+    }
 }
