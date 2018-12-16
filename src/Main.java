@@ -43,11 +43,14 @@ public class Main {
 
 		ArrayList<Integer> tstList = c.to1D(c.imageMAtrix);
 
-		ArrayList<Double> averages = non.constructQuantizer(tstList, 3);
+		ArrayList<Double> averages = non.constructQuantizer(tstList, 6);
         ArrayList<QuantizerElement> list = non.constructTable(averages);
 
         ArrayList<Integer> compressed = non.compress(tstList, list);
+
+        System.out.println("Size of compressed image in 1D: " + compressed.size());
         c.imageMAtrix = c.to2D(compressed, c.imageMAtrix.length, c.imageMAtrix[0].length);
+
 
         c.writeImage("compressedTEst3.jpeg");
 
@@ -59,15 +62,18 @@ public class Main {
 
 
 
-        /*
+
         //Test to decompress
 		ReadWriteImage c1 = new ReadWriteImage();
 		c1.readImage("compressedTEst3.jpeg");
 		ArrayList<Integer> commpressed = c1.to1D(c1.imageMAtrix);
-		ArrayList<Integer> original = non.decompress(commpressed, list);
+        System.out.println("Size of toBeDecompressed image in 1D: " + commpressed.size());
+        //Error is here
+        ArrayList<Integer> original = non.decompress(commpressed, list);
+        System.out.println("Size of decompressed image in 1D: " + original.size());
 		c1.imageMAtrix = c1.to2D(original, c1.imageMAtrix.length, c1.imageMAtrix[0].length);
 		c1.writeImage("OriginalFromCompressedTEst3.jpeg");
-		*/
+
     }
 
 }

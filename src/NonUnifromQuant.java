@@ -163,6 +163,8 @@ public class NonUnifromQuant {
                     break;
                 }
             }
+            if(pixel > table.get(table.size()-1).Q)
+                originalImg.add(table.get(table.size()-1).QInverse);
         }
         return originalImg;
     }

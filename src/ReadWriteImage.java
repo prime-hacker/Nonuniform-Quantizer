@@ -95,6 +95,8 @@ public class ReadWriteImage
 	}
 	 int[][] to2D(ArrayList<Integer> integers, int height, int width)
 	{
+		if (integers.size() < (height*width))
+			throw new IllegalArgumentException("Invalid array length.");
 		int[][] imageMatrix = new int[height][width];
 		int count = -1;
 		for(int i = 0; i< height; i++)
